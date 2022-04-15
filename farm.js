@@ -1,16 +1,35 @@
-getYieldForPlant = (crops) => {
-    return crops.yield
+getYieldForPlant = (input) => {
+    return input.yield
 }
 
-getYieldForCrop = (crops) => {
-    jield = getYieldForPlant(crops.crop)
-    return jield * crops.numCrops
+getYieldForCrop = (input) => {
+    jield = getYieldForPlant(input.crop)
+    return jield * input.numCrops
 }
 
-getTotalYield = (obj) => {
-    console.log(obj)
-    const seperatedTotalYield = (obj.crops.map(x => getYieldForCrop(x)))
+getTotalYield = (input) => {
+    console.log(input)
+    const seperatedTotalYield = (input.crops.map(x => getYieldForCrop(x)))
     const sumTotalYield = seperatedTotalYield.reduce((partialSum, a) => partialSum + a, 0);
     return sumTotalYield
-  }
-module.exports = { getYieldForPlant, getYieldForCrop, getTotalYield } 
+}
+
+getCostForCrop = (input) => {
+    jield = getYieldForPlant(input.crop)
+    return jield * input.numCrops
+}
+
+getCostsForMultipleCrops = (input) => {
+    console.log(input)
+    const seperatedTotalCost = (input.crops.map(x => getYieldForCrop(x)))
+    const sumTotalCost= seperatedTotalCost.reduce((partialSum, a) => partialSum + a, 0);
+    return sumTotalCost
+}
+
+module.exports = { 
+    getYieldForPlant, 
+    getYieldForCrop, 
+    getTotalYield,
+    getCostForCrop, 
+    getCostsForMultipleCrops 
+} 
