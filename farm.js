@@ -9,7 +9,7 @@ getYieldForCrop = (crops) => {
 
 getTotalYield = (obj) => {
     console.log(obj)
-    const seperatedTotalYield = (obj.map(x => getYieldForCrop(x)))
+    const seperatedTotalYield = (obj.crops.map(x => getYieldForCrop(x)))
     const sumTotalYield = seperatedTotalYield.reduce((partialSum, a) => partialSum + a, 0);
     return sumTotalYield
   }

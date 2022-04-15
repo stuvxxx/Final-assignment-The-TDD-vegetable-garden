@@ -27,26 +27,31 @@
 //   return sumTotalYield
 // }
 // console.log(crops)
+//
+//const corn = {
+//    name: "corn",
+//    yield: 3,
+//};
+//const pumpkin = {
+//    name: "pumpkin",
+//    yield: 4,
+//};
+//const crops = [
+//    { crop: corn, numCrops: 5 },
+//    { crop: pumpkin, numCrops: 2 },
+//];
+//
+//
+//
+//let strCrops = JSON.stringify({crops})
+//let objCrops = ({crops})
+//let noBrackCrops = crops
+//
+//
+//let cropCheck = (input) => {
+//    console.log(input.crops)
+//    }
+ //cropCheck(strCrops)     // <-input.map not function 
+//  cropCheck(objCrops)     // <-input.map not function 
+ //cropCheck(noBrackCrops)    // <- What I want
 
-const corn = {
-    name: "corn",
-    yield: 3,
-};
-const pumpkin = {
-    name: "pumpkin",
-    yield: 4,
-};
-const crops = [
-    { crop: corn, numCrops: 5 },
-    { crop: pumpkin, numCrops: 2 },
-];
-
-
-aap = (obj) => {
-    newObj = JSON.stringify(obj)
-    return newObj.map((x) => {
-        console.log(x)
-    })
-}
-
-aap(crops)
