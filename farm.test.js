@@ -102,3 +102,49 @@ describe("getCostForCrop", () => {
         expect(getCostsForMultipleCrops({ crops })).toBe(0);
     });
 });
+describe("getRevenueForCrop", () => {
+    test("Calculate revenue for one plant", () => {
+        const corn = {
+            name: "corn",
+            yield: 10,
+            saleprice: 2,
+        };
+        expect(getRevenueForCrop(corn)).toBe(20)
+    })
+    test("Calculate revenue for crop, simple", () => {
+        const corn = {
+            name: "corn",
+            yield: 10,
+            saleprice: 2,
+        };
+        const input = {
+            crop: corn,
+            numCrops: 10,
+        };
+        expect(getRevenueForCrop(input)).toBe(200)
+    })
+    test("Calculate revenue for multiple crops", () => {
+        const corn = {
+            name: "corn",
+            yield: 10,
+            saleprice: 2,
+        };
+        const input = {
+            crop: corn,
+            numCrops: 10,
+        };
+        expect(getRevenueForCrop(input)).toBe(200)
+    })
+    test("Calculate revenue for multiple crops with no yield", () => {
+        const corn = {
+            name: "corn",
+            yield: 0,
+            saleprice: 2,
+        };
+        const input = {
+            crop: corn,
+            numCrops: 5,
+        };
+        expect(getRevenueForCrop(input)).toBe(0)
+    })
+})
