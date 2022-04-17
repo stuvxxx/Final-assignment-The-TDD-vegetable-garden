@@ -1,3 +1,5 @@
+// GET YIELD \\
+
 getYieldForPlant = (input) => {
     return input.yield
 }
@@ -13,6 +15,8 @@ getTotalYield = (input) => {
     const sumTotalYield = seperatedTotalYield.reduce((partialSum, a) => partialSum + a, 0);
     return sumTotalYield
 }
+
+// GET COSTS \\
 
 getCostForPlant = (input) => {
     return input.yield
@@ -30,7 +34,24 @@ getCostsForMultipleCrops = (input) => {
     return sumTotalCost
 }
 
+// GET REVENUE \\
 
+getRevenueForPlant = (input) => {
+    jield = getYieldForPlant(input)
+    return jield * input.saleprice
+}
+
+getRevenueForCrop = (input) => {
+    totalYield = getRevenueForPlant(input.crop)
+    return totalYield * input.numCrops
+}
+
+getRevenueFormultipleCrops = (input) => {
+    const seperatedTotalRevenue = (input.crops.map(x => getRevenueForCrop(x)))
+    const sumTotalRevenue = seperatedTotalRevenue.reduce((partialSum, a) => partialSum + a, 0);
+    return sumTotalRevenue
+}
+ 
 
 module.exports = { 
     getYieldForPlant, 
@@ -38,5 +59,4 @@ module.exports = {
     getTotalYield,
     getCostForCrop, 
     getCostsForMultipleCrops,
-    getRevenueForCrop 
 } 

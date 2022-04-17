@@ -17,6 +17,7 @@ describe("getYieldForPlant", () => {
     });
 });
 
+
 describe("getYieldForCrop", () => {
     test("Get yield for crop, simple", () => {
         const corn = {
@@ -30,6 +31,7 @@ describe("getYieldForCrop", () => {
         expect(getYieldForCrop(input)).toBe(30);
     });
 });
+
 
 describe("getTotalYield", () => {
     test("Calculate total yield with multiple crops", () => {
@@ -58,7 +60,18 @@ describe("getTotalYield", () => {
     });
 });
 
-describe("getCostForCrop", () => {
+describe("getCostForPlant", () => {
+    const corn = {
+        name: "corn",
+        yield: 30,        
+    };
+
+    test("Get yield for plant with no environment factors", () => {
+        expect(getYieldForPlant(corn)).toBe(30);
+    });
+});
+
+describe("getCostForCrops", () => {
     test("Calculate cost for yielding crop, simple", () => {
         const corn = {
             name: "corn",
@@ -70,6 +83,11 @@ describe("getCostForCrop", () => {
         };
         expect(getCostForCrop(input)).toBe(50);
     });
+});
+
+
+
+describe("getCostsForMultipleCrops", () => {
     test("Calculate costs for yielding muliple crops ", () => {
         const corn = {
             name: "corn",
@@ -77,7 +95,7 @@ describe("getCostForCrop", () => {
         };
         const pumpkin = {
             name: "pumpkin",
-            yield: 2,
+            yield: 2, 
         };
         const crops = [
             { crop: corn, numCrops: 5 },
@@ -102,15 +120,23 @@ describe("getCostForCrop", () => {
         expect(getCostsForMultipleCrops({ crops })).toBe(0);
     });
 });
-describe("getRevenueForCrop", () => {
+
+
+
+
+
+describe("getRevenueForPlant", () => {
     test("Calculate revenue for one plant", () => {
         const corn = {
             name: "corn",
             yield: 10,
             saleprice: 2,
         };
-        expect(getRevenueForCrop(corn)).toBe(20)
-    })
+        expect(getRevenueForPlant(corn)).toBe(20)
+    });
+});
+
+describe("getRevenueForCrop", () => {
     test("Calculate revenue for crop, simple", () => {
         const corn = {
             name: "corn",
@@ -122,18 +148,26 @@ describe("getRevenueForCrop", () => {
             numCrops: 10,
         };
         expect(getRevenueForCrop(input)).toBe(200)
-    })
+    });
+});
+
+describe("getRevenueFormultipleCrops", () => {
     test("Calculate revenue for multiple crops", () => {
         const corn = {
             name: "corn",
             yield: 10,
             saleprice: 2,
         };
-        const input = {
-            crop: corn,
-            numCrops: 10,
+        const pumpkin = {
+            name: "pumpkin",
+            yield: 2,
+            saleprice: 4,
         };
-        expect(getRevenueForCrop(input)).toBe(200)
+        const crops = [
+            { crop: corn, numCrops: 5 },
+            { crop: pumpkin, numCrops: 2 },
+        ];
+        expect(getRevenueFormultipleCrops({crops})).toBe(116)
     })
     test("Calculate revenue for multiple crops with no yield", () => {
         const corn = {
@@ -141,10 +175,38 @@ describe("getRevenueForCrop", () => {
             yield: 0,
             saleprice: 2,
         };
-        const input = {
-            crop: corn,
-            numCrops: 5,
+        const pumpkin = {
+            name: "pumpkin",
+            yield: 0,
+            saleprice: 4,
         };
-        expect(getRevenueForCrop(input)).toBe(0)
+        const crops = [
+            { crop: corn, numCrops: 5 },
+            { crop: pumpkin, numCrops: 2 },
+        ];
+        expect(getRevenueFormultipleCrops({crops})).toBe(0)
     })
-})
+    test("Calculate revenue for multiple crops where only one has yield", () => {
+        const corn = {
+            name: "corn",
+            yield: 5,
+            saleprice: 2,
+        };
+        const pumpkin = {
+            name: "pumpkin",
+            yield: 0,
+            saleprice: 4,
+        };
+        const peach = {
+            name: "pumpkin",
+            yield: 0,
+            saleprice: 4,
+        };
+        const crops = [
+            { crop: corn, numCrops: 5 },
+            { crop: pumpkin, numCrops: 2 },
+            { crop: peach, numCrops: 2 },
+        ];
+        expect(getRevenueFormultipleCrops({crops})).toBe(50)
+    })
+});
