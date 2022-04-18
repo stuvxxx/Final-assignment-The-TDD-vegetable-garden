@@ -1,6 +1,7 @@
 // GET YIELD \\
 
-getYieldForPlant = (input) => {
+getYieldForPlant = (input, environmentFactors) => {
+    console.log(input.factor)
     return input.yield
 }
 
@@ -10,7 +11,6 @@ getYieldForCrop = (input) => {
 }
 
 getTotalYield = (input) => {
-    console.log(input)
     const seperatedTotalYield = (input.crops.map(x => getYieldForCrop(x)))
     const sumTotalYield = seperatedTotalYield.reduce((partialSum, a) => partialSum + a, 0);
     return sumTotalYield
