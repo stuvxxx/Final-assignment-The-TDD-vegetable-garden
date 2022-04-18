@@ -70,7 +70,7 @@ module.exports = {
     getRevenueForCrop,
     getRevenueFormultipleCrops,
 
-    getProfitFromPlant,
-    getProfitFromCrops,
-    getTotalProfit
-} 
+ //   getProfitFromPlant,
+ //   getProfitFromCrops,
+ //   getTotalProfit
+}
