@@ -28,7 +28,6 @@ getCostForCrop = (input) => {
 }
 
 getCostsForMultipleCrops = (input) => {
-    console.log(input)
     const seperatedTotalCost = (input.crops.map(x => getCostForCrop(x)))
     const sumTotalCost= seperatedTotalCost.reduce((partialSum, a) => partialSum + a, 0);
     return sumTotalCost
@@ -58,6 +57,17 @@ getProfitFromPlant = (input) => {
     return input.yield * input.saleprice - 1
 }
 
+getProfitFromCrops = (input) => {
+    return getRevenueForCrop(input) - getCostForCrop(input)
+}
+
+getTotalProfit = (input) => {
+    const seperatedTotalProfit = (input.crops.map(x => getProfitFromCrops(x)))
+    const sumTotalRevenue = seperatedTotalProfit.reduce((partialSum, a) => partialSum + a, 0);
+    return sumTotalRevenue
+}
+
+
 
 module.exports = { 
     getYieldForPlant, 
@@ -72,7 +82,7 @@ module.exports = {
     getRevenueForCrop,
     getRevenueFormultipleCrops,
 
- //   getProfitFromPlant,
- //   getProfitFromCrops,
- //   getTotalProfit
+    getProfitFromPlant,
+    getProfitFromCrops,
+    getTotalProfit
 }

@@ -246,7 +246,7 @@ describe("getProfitFromCrops", () => {
             crop: corn,
             numCrops: 10,
         };
-        expect(getProfitFromCrops(input)).toBe(100)
+        expect(getProfitFromCrops(input)).toBe(190)
     });
 });
 
@@ -268,7 +268,7 @@ describe("getTotalProfit", () => {
             { crop: corn, numCrops: 5 },
             { crop: pumpkin, numCrops: 2 },
         ];
-        expect(getTotalProfit({crops})).toBe(64)
+        expect(getTotalProfit({crops})).toBe(109)
     })
     test("Calculate profit for multiple crops with no yield", () => {
         const corn = {
@@ -285,7 +285,7 @@ describe("getTotalProfit", () => {
             { crop: corn, numCrops: 5 },
             { crop: pumpkin, numCrops: 2 },
         ];
-        expect(getTotalProfit({crops})).toBe(0)
+        expect(getTotalProfit({crops})).toBe(-7)
     })
     test("Calculate profit for multiple crops where only one has yield", () => {
         const corn = {
@@ -308,6 +308,6 @@ describe("getTotalProfit", () => {
             { crop: pumpkin, numCrops: 2 },
             { crop: peach, numCrops: 2 },
         ];
-        expect(getTotalProfit({crops})).toBe(25)
+        expect(getTotalProfit({crops})).toBe(41)
     })
 });
