@@ -1,6 +1,6 @@
 const corn = {
     name: "corn",
-    yield: 30,
+    yield: 3,
     factor: {
         sun: {
         low: -50,
@@ -8,15 +8,16 @@ const corn = {
         high: 50,
         },
         wind: {
-            low: -50,
+            low: -60,
             medium: 0,
-            extreme: 40},
+            extreme: 50,
+            },
     },
-    };
+};
 
 const environmentFactors = {
-sun: "low",
-wind: "extreme"
+sun: "high",
+wind: "low"
 };
 
 
@@ -32,8 +33,15 @@ getYieldForPlant = (input, environmentFactors) => {
     let factorsToCountIn = factorsToCountInWithUndefined.filter(x => {
         return x !== undefined;
     })
-    console.log(factorsToCountIn)
+    let factorsToCalculateWith = factorsToCountIn.map(x => {
+        return (100 + x) / 100 
+    })
+    let theFinalYield = input.yield
+    for(x = 0;x < factorsToCalculateWith.length; x++) {
+        theFinalYield = theFinalYield * factorsToCalculateWith[x]
+    }
+    return theFinalYield
 }
 
 
-getYieldForPlant(corn, environmentFactors)
+console.log(getYieldForPlant(corn, environmentFactors))

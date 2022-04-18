@@ -1,9 +1,32 @@
 // GET YIELD \\
 
 getYieldForPlant = (input, environmentFactors) => {
-    console.log(input.factor)
-    return input.yield
+    if (typeof environmentFactors === "undefined") {
+        return input.yield
+      } else {
+    let factorsToCountInWithUndefined = []
+    const factorsToCheck = Object.keys(environmentFactors)
+    factorsToCheck.map(x => {
+        if(input.factor[x] !== undefined) {
+            const value = (environmentFactors[x])
+            factorsToCountInWithUndefined.push(input.factor[x][value])
+        }
+    });
+    let factorsToCountIn = factorsToCountInWithUndefined.filter(x => {
+        return x !== undefined;
+    })
+    let factorsToCalculateWith = factorsToCountIn.map(x => {
+        return (100 + x) / 100 
+    })
+    let theFinalYield = input.yield
+    for(x = 0;x < factorsToCalculateWith.length; x++) {
+        theFinalYield = theFinalYield * factorsToCalculateWith[x]
+    }
+    return theFinalYield
 }
+}
+
+
 
 getYieldForCrop = (input) => {
     jield = getYieldForPlant(input.crop)
