@@ -26,13 +26,13 @@ getYieldForPlant = (input, environmentFactors) => {
 }
 }
 
-getYieldForCrop = (input) => {
-    jield = getYieldForPlant(input.crop)
+getYieldForCrop = (input, environmentFactors) => {
+    jield = getYieldForPlant(input.crop, environmentFactors)
     return jield * input.numCrops
 }
 
-getTotalYield = (input) => {
-    const seperatedTotalYield = (input.crops.map(x => getYieldForCrop(x)))
+getTotalYield = (input, environmentFactors) => {
+    const seperatedTotalYield = (input.crops.map(x => getYieldForCrop(x, environmentFactors)))
     const sumTotalYield = seperatedTotalYield.reduce((partialSum, a) => partialSum + a, 0);
     return sumTotalYield
 }
