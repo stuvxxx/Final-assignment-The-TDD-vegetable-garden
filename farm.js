@@ -52,11 +52,25 @@ getRevenueFormultipleCrops = (input) => {
     return sumTotalRevenue
 }
  
+// GET PROFIT \\ 
+
+
+
 
 module.exports = { 
     getYieldForPlant, 
     getYieldForCrop, 
     getTotalYield,
+
+    getCostForPlant,
     getCostForCrop, 
     getCostsForMultipleCrops,
+
+    getRevenueForPlant,
+    getRevenueForCrop,
+    getRevenueFormultipleCrops,
+
+    getProfitFromPlant,
+    getProfitFromCrops,
+    getTotalProfit
 } 
