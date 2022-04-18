@@ -26,8 +26,6 @@ getYieldForPlant = (input, environmentFactors) => {
 }
 }
 
-
-
 getYieldForCrop = (input) => {
     jield = getYieldForPlant(input.crop)
     return jield * input.numCrops
