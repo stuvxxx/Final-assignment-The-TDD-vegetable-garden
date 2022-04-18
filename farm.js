@@ -18,13 +18,13 @@ getTotalYield = (input) => {
 
 // GET COSTS \\
 
-getCostForPlant = (input) => {
-    return input.yield
+getCostForPlant = () => {
+    return 1
 }
 
 getCostForCrop = (input) => {
-    jield = getCostForPlant(input.crop)
-    return jield * input.numCrops
+    costForOne = getCostForPlant(input.crop)
+    return costForOne * input.numCrops
 }
 
 getCostsForMultipleCrops = (input) => {

@@ -127,7 +127,7 @@ describe("getCostsForMultipleCrops", () => {
             yield: 0,
         };
         const crops = [{ crop: corn, numCrops: 10 }];
-        expect(getCostsForMultipleCrops({ crops })).toBe(-10);
+        expect(getCostsForMultipleCrops({ crops })).toBe(10);
     });
 });
 
