@@ -54,7 +54,9 @@ getRevenueFormultipleCrops = (input) => {
  
 // GET PROFIT \\ 
 
-
+getProfitFromPlant = (input) => {
+    return input.yield * input.saleprice - 1
+}
 
 
 module.exports = { 
