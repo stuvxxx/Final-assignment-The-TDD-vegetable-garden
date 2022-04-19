@@ -517,4 +517,78 @@ describe("getTotalProfit", () => {
         ];
         expect(getTotalProfit({crops})).toBe(41)
     })
+    test("Calculate profit for multiple crops AND multiple enviromental factors, some zero's and unaccountable factors the full package!", () => {
+        const corn = {
+            name: "corn",
+            yield: 10,
+            saleprice: 2,
+            factor: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+                wind: {
+                    low: 0,
+                    medium: -20,
+                    high: -40,
+                    },
+                rain: {
+                    low: 10,
+                    medium: 20,
+                    high: 30,
+                    },
+            },
+        };
+        const pumpkin = {
+            name: "pumpkin",
+            yield: 0,
+            saleprice: 4,
+            factor: {
+                sun: {
+                    low: -20,
+                    medium: 0,
+                    high: 20,
+                },
+                rain: {
+                    low: 10,
+                    medium: 20,
+                    high: 30,
+                    },
+            },
+        };
+        const wheat = {
+            name: "wheat",
+            yield: 30,
+            saleprice: 4,
+            factor: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+                wind: {
+                    low: 0,
+                    medium: -25,
+                    high: -50,
+                    },
+                rain: {
+                    low: 10,
+                    medium: 20,
+                    high: 30,
+                    },
+            },
+        };
+        const crops = [
+            { crop: corn, numCrops: 5 },
+            { crop: pumpkin, numCrops: 2 },
+            { crop: wheat, numCrops: 2 },
+        ];
+        const environmentFactors = {
+            sun: "medium",
+            wind: "low",
+            rain: "high",
+            };
+        expect(getTotalProfit({crops}, environmentFactors)).toBe(433)
+    })
 });

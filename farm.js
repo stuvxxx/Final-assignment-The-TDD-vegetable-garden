@@ -82,8 +82,8 @@ getProfitFromCrops = (input, environmentFactors) => {
     return getRevenueForCrop(input, environmentFactors) - getCostForCrop(input)
 }
 
-getTotalProfit = (input) => {
-    const seperatedTotalProfit = (input.crops.map(x => getProfitFromCrops(x)))
+getTotalProfit = (input, environmentFactors) => {
+    const seperatedTotalProfit = (input.crops.map(x => getProfitFromCrops(x, environmentFactors)))
     const sumTotalRevenue = seperatedTotalProfit.reduce((partialSum, a) => partialSum + a, 0);
     return sumTotalRevenue
 }
