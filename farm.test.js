@@ -454,7 +454,7 @@ describe("getProfitFromCrops", () => {
         const environmentFactors = {
             sun: "low",
             };
-        expect(getProfitFromCrops(input, environmentFactors)).toBe(40)
+        expect(getProfitFromCrops(input, environmentFactors)).toBe(90)
     });
 
 

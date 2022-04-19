@@ -78,8 +78,8 @@ getProfitFromPlant = (input) => {
     return input.yield * input.saleprice - 1
 }
 
-getProfitFromCrops = (input) => {
-    return getRevenueForCrop(input) - getCostForCrop(input)
+getProfitFromCrops = (input, environmentFactors) => {
+    return getRevenueForCrop(input, environmentFactors) - getCostForCrop(input)
 }
 
 getTotalProfit = (input) => {
