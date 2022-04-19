@@ -434,6 +434,29 @@ describe("getProfitFromCrops", () => {
     });
 });
 
+    test("Calculate profit for crop, AND enviromental factor", () => {
+        const corn = {
+        name: "corn",
+        yield: 10,
+        saleprice: 2,
+        factor: {
+            sun: {
+            low: -50,
+            medium: 0,
+            high: 50,
+            },
+        },
+        };
+        const input = {
+        crop: corn,
+        numCrops: 10,
+        };
+        const environmentFactors = {
+            sun: "low",
+            };
+        expect(getProfitFromCrops(input, environmentFactors)).toBe(40)
+    });
+
 
 
 describe("getTotalProfit", () => {
