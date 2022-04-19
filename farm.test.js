@@ -306,6 +306,33 @@ describe("getRevenueForCrop", () => {
             name: "corn",
             yield: 10,
             saleprice: 2,
+            factor: {
+                sun: {
+                low: -50,
+                medium: 0,
+                high: 50,
+                },
+            },  
+        };
+        const input = {
+            crop: corn,
+            numCrops: 10,
+        };
+        const environmentFactors = {
+            sun: "low",
+            };
+        expect(getRevenueForCrop(input, environmentFactors)).toBe(100)
+    });
+});
+
+
+
+
+    test("Calculate revenue for crop, AND enviromental factors", () => {
+        const corn = {
+            name: "corn",
+            yield: 10,
+            saleprice: 2,
         };
         const input = {
             crop: corn,
@@ -313,7 +340,10 @@ describe("getRevenueForCrop", () => {
         };
         expect(getRevenueForCrop(input)).toBe(200)
     });
-});
+    
+
+
+
 
 describe("getRevenueFormultipleCrops", () => {
     test("Calculate revenue for multiple crops", () => {
