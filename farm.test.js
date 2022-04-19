@@ -128,48 +128,127 @@ describe("getTotalYield", () => {
         expect(getTotalYield({ crops }, environmentFactors)).toBe(11.5);
     });
 
-    test("Calculate total yield with 0 amount", () => {
+    test("Calculate total yield with 0 amount AND enviroment factors", () => {
         const corn = {
             name: "corn",
             yield: 3,
+            factor: {
+                sun: {
+                low: -50,
+                medium: 0,
+                high: 50,
+                },
+            },
         };
+        const environmentFactors = {
+            sun: "high",
+            };
+        
         const crops = [{ crop: corn, numCrops: 0 }];
-        expect(getTotalYield({ crops })).toBe(0);
+
+        expect(getTotalYield({ crops }, environmentFactors)).toBe(0);
     });
 });
 
-
-
-
-
-
-
-
-
-describe("getCostForPlant", () => {
-    const corn = {
-        name: "corn",
-        yield: 30,        
-    };
-
-    test("Get costs for plant with no environment factors", () => {
-        expect(getCostForPlant(corn)).toBe(1);
-    });
-});
-
-describe("getCostForCrops", () => {
-    test("Calculate cost for yielding crop, simple", () => {
+    test("Calculate total yield with multiple crops AND multiple enviromental factors AND some zero's", () => {
         const corn = {
             name: "corn",
-            yield: 5,
+            yield: 3,
+            factor: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+                wind: {
+                    low: 0,
+                    medium: 0,
+                    high: 0,
+                },
+            },
         };
-        const input = {
-            crop: corn,
-            numCrops: 10,
+        const pumpkin = {
+            name: "pumpkin",
+            yield: 4,
+            factor: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+                wind: {
+                    low: 0,
+                    medium: 0,
+                    high: 0,
+                },
+                rain: {
+                    low: -25,
+                    medium: 20,
+                    high: 30,
+                },
+            },
+
         };
-        expect(getCostForCrop(input)).toBe(10);
+        const wheat = {
+            name: "wheat",
+            yield: 4,
+            factor: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+                wind: {
+                    low: 0,
+                    medium: -25,
+                    high: -50,
+                },
+                    rain: {
+                    low: -25,
+                    medium: 20,
+                    high: 30,
+                },
+            },
+
+        };
+        const crops = [
+            { crop: corn, numCrops: 5 },
+            { crop: pumpkin, numCrops: 2 },
+            { crop: wheat, numCrops: 2 },
+        ];
+        const environmentFactors = {
+            sun: "low",
+            wind: "medium",
+            rain: "medium"
+            };
+        expect(getTotalYield({ crops }, environmentFactors)).toBe(15.9);
     });
-});
+
+
+    describe("getCostForPlant", () => {
+        const corn = {
+            name: "corn",
+            yield: 30,        
+        };
+
+        test("Get costs for plant with no environment factors", () => {
+            expect(getCostForPlant(corn)).toBe(1);
+        });
+    });
+
+    describe("getCostForCrops", () => {
+        test("Calculate cost for yielding crop, simple", () => {
+            const corn = {
+                name: "corn",
+                yield: 5,
+            };
+            const input = {
+                crop: corn,
+                numCrops: 10,
+            };
+            expect(getCostForCrop(input)).toBe(10);
+        });
+    });
 
 
 
@@ -206,7 +285,6 @@ describe("getCostsForMultipleCrops", () => {
         expect(getCostsForMultipleCrops({ crops })).toBe(10);
     });
 });
-
 
 
 
