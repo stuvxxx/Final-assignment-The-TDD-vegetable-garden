@@ -328,7 +328,7 @@ describe("getRevenueForCrop", () => {
 
 
 
-    test("Calculate revenue for crop, AND enviromental factors", () => {
+    test("Calculate revenue for crop, simple", () => {
         const corn = {
             name: "corn",
             yield: 10,

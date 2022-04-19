@@ -56,18 +56,18 @@ getCostsForMultipleCrops = (input) => {
 
 // GET REVENUE \\
 
-getRevenueForPlant = (input) => {
-    jield = getYieldForPlant(input)
+getRevenueForPlant = (input, environmentFactors) => {
+    jield = getYieldForPlant(input, environmentFactors)
     return jield * input.saleprice
 }
 
-getRevenueForCrop = (input) => {
-    totalYield = getRevenueForPlant(input.crop)
+getRevenueForCrop = (input, environmentFactors) => {
+    totalYield = getRevenueForPlant(input.crop, environmentFactors)
     return totalYield * input.numCrops
 }
 
-getRevenueFormultipleCrops = (input) => {
-    const seperatedTotalRevenue = (input.crops.map(x => getRevenueForCrop(x)))
+getRevenueFormultipleCrops = (input, environmentFactors) => {
+    const seperatedTotalRevenue = (input.crops.map(x => getRevenueForCrop(x, environmentFactors)))
     const sumTotalRevenue = seperatedTotalRevenue.reduce((partialSum, a) => partialSum + a, 0);
     return sumTotalRevenue
 }
